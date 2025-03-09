@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Benvenuto su FARMAMED!</h2>
+    <p>Utilizza il nostro strumento per scoprire e monitorare le potenziali interferenze tra farmaci.</p>
+
+    <!-- Barra di ricerca -->
+    <form action="/search" method="post">
+        <input type="text" name="query" placeholder="Inserisci il nome di un farmaco" required>
+        <button type="submit">Cerca</button>
+    </form>
+{% endblock %}

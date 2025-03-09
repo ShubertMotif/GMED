@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FARMAMED</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='images/farmaci_cassetta.png') }}" alt="Logo FARMAMED" class="logo">
+            <h1>FARMAMED</h1>
+        </div>
+        <nav>
+            <ul class="navbar">
+                <li><a href="/">Home</a></li>
+                <li><a href="/processo">Info</a></li>
+                <li><a href="/calcoli">Database</a></li>
+                <li><a href="/aggiungi_farmaco">Aggiungi Farmaco</a></li>
+                <li><a href="/contatti">Contatti</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 FARMAMED. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Risultati per "{{ query }}"</h2>
+    {% if results %}
+        {% for compound in results %}
+            <div class="result-container">
+                <h3>{{ compound.iupac_name }}</h3>
+                <p><strong>Formula Molecolare:</strong> {{ compound.molecular_formula }}</p>
+                <p><strong>Peso Molecolare:</strong> {{ compound.molecular_weight }} g/mol</p>
+
+                <!-- Mostra l'immagine della struttura chimica -->
+
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Nessun risultato trovato per "{{ query }}".</p>
+    {% endif %}
+{% endblock %}
