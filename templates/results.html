@@ -8,7 +8,7 @@
             <p><strong>Formula Molecolare:</strong> {{ compound.molecular_formula }}</p>
             <p><strong>Peso Molecolare:</strong> {{ compound.molecular_weight }} g/mol</p>
 
-            <!-- Form per salvare il farmaco con note -->
+            <!-- Mostra il form per salvare il farmaco -->
             <form action="{{ url_for('save') }}" method="POST">
                 <input type="hidden" name="nome" value="{{ compound.iupac_name }}">
                 <input type="hidden" name="formula" value="{{ compound.molecular_formula }}">

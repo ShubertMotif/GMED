@@ -25,16 +25,23 @@ with app.app_context():
 def index():
     return render_template('index.html')
 
+
 @app.route('/search', methods=['POST'])
 def search():
     """Cerca un farmaco su PubChem e mostra i risultati."""
     query = request.form.get('query')
     if query:
+        # Ricerca su PubChem
         results = pcp.get_compounds(query, 'name')
+
+        # Se troviamo dei risultati, passiamo i dati alla pagina dei risultati
         if results:
-            compound = results[0]
+            compound = results[0]  # Prendiamo il primo risultato (puoi modificarlo per gestire più risultati)
             return render_template('results.html', query=query, compound=compound)
+
+    # Se non trova nulla, mostriamo un errore nella pagina
     return render_template('index.html', error="Farmaco non trovato.")
+
 
 @app.route('/save', methods=['POST'])
 def save():

@@ -9,4 +9,8 @@
         <input type="text" name="query" placeholder="Inserisci il nome di un farmaco" required>
         <button type="submit">Cerca</button>
     </form>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
 {% endblock %}
