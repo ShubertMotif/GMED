@@ -2,17 +2,24 @@
 
 {% block content %}
     <h2>Risultati per "{{ query }}"</h2>
-    {% if results %}
-        {% for compound in results %}
-            <div class="result-container">
-                <h3>{{ compound.iupac_name }}</h3>
-                <p><strong>Formula Molecolare:</strong> {{ compound.molecular_formula }}</p>
-                <p><strong>Peso Molecolare:</strong> {{ compound.molecular_weight }} g/mol</p>
+    {% if compound %}
+        <div class="result-container">
+            <h3>{{ compound.iupac_name }}</h3>
+            <p><strong>Formula Molecolare:</strong> {{ compound.molecular_formula }}</p>
+            <p><strong>Peso Molecolare:</strong> {{ compound.molecular_weight }} g/mol</p>
 
-                <!-- Mostra l'immagine della struttura chimica -->
+            <!-- Form per salvare il farmaco con note -->
+            <form action="{{ url_for('save') }}" method="POST">
+                <input type="hidden" name="nome" value="{{ compound.iupac_name }}">
+                <input type="hidden" name="formula" value="{{ compound.molecular_formula }}">
+                <input type="hidden" name="peso_molecolare" value="{{ compound.molecular_weight }}">
 
-            </div>
-        {% endfor %}
+                <label for="note">Note (adrenergico, gabaergico, etc.):</label>
+                <input type="text" name="note" placeholder="Es. Adrenergico" required>
+
+                <button type="submit">Salva nel Database</button>
+            </form>
+        </div>
     {% else %}
         <p>Nessun risultato trovato per "{{ query }}".</p>
     {% endif %}

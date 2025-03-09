@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Farmaci Salvati</h2>
+    {% if farmaci %}
+        <ul>
+            {% for farmaco in farmaci %}
+                <li>
+                    <h3>{{ farmaco.nome }}</h3>
+                    <p><strong>Formula:</strong> {{ farmaco.formula }}</p>
+                    <p><strong>Peso Molecolare:</strong> {{ farmaco.peso_molecolare }} g/mol</p>
+                    <p><strong>Note:</strong> {{ farmaco.note }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nessun farmaco salvato.</p>
+    {% endif %}
+{% endblock %}
