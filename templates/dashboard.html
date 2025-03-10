@@ -3,12 +3,11 @@
 {% block content %}
     <h2>Dashboard Medico</h2>
 
-<form action="{{ url_for('search') }}" method="POST">
-    <input type="text" name="query" placeholder="Cerca un farmaco..." required>
-    <button type="submit">Cerca</button>
-</form>
-
-
+    <!-- Form di ricerca farmaco -->
+    <form action="{{ url_for('search') }}" method="POST" class="search-form">
+        <input type="text" name="query" placeholder="Cerca un farmaco..." required>
+        <button type="submit">🔍 Cerca</button>
+    </form>
 
     <!-- Link per aggiungere nuovi pazienti e farmaci -->
     <a href="{{ url_for('aggiungi_paziente') }}">➕ Aggiungi Paziente</a>
@@ -22,6 +21,22 @@
                     <strong>{{ paziente.nome }} {{ paziente.cognome }}</strong> - {{ paziente.data_nascita }}<br>
                     <small>Sesso: {{ paziente.sesso }}</small><br>
                     <small>Note: {{ paziente.note_mediche }}</small>
+
+                    <!-- Mostra i farmaci abbinati al paziente -->
+                    <h4>Farmaci Assegnati:</h4>
+                    {% if paziente.farmaci %}
+                        <ul>
+                            {% for farmaco in paziente.farmaci %}
+                                <li>
+                                    <strong>{{ farmaco.nome }}</strong> - {{ farmaco.dose }}<br>
+                                    <small>Principio Attivo: {{ farmaco.principio_attivo }}</small><br>
+                                    <small>Effetti Collaterali: {{ farmaco.effetti_collaterali }}</small>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>Nessun farmaco assegnato.</p>
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>

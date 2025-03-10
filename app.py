@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 import os
+import pubchempy as pcp
 
 # Configurazione dell'app Flask
 app = Flask(__name__)
@@ -31,7 +32,7 @@ class Paziente(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), nullable=False)
     cognome = db.Column(db.String(100), nullable=False)
-    data_nascita = db.Column(db.String(10), nullable=False)  # formato YYYY-MM-DD
+    data_nascita = db.Column(db.String(10), nullable=False)  # Formato YYYY-MM-DD
     sesso = db.Column(db.String(10), nullable=False)
     note_mediche = db.Column(db.Text, nullable=True)
     farmaci = db.relationship('Farmaco', backref='paziente', lazy=True)
@@ -180,35 +181,30 @@ def contatti():
     """Pagina dei contatti"""
     return render_template('contatti.html')
 
+
 @app.route('/search', methods=['POST'])
-@login_required
 def search():
-    """Cerca un farmaco su PubChem e mostra i risultati"""
+    """Cerca un farmaco nel database interno e mostra i risultati"""
     query = request.form.get('query')
 
     if not query:
         flash("Inserisci un nome di farmaco valido!", "warning")
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('index'))
 
-    try:
-        results = pcp.get_compounds(query, 'name')
+    # Cerca il farmaco nel database
+    farmaco = Farmaco.query.filter(Farmaco.nome.ilike(f"%{query}%")).first()
 
-        if results:
-            compound = results[0]  # Prendiamo il primo risultato trovato
-            return render_template('results.html', query=query, compound=compound)
-        else:
-            flash("Nessun farmaco trovato!", "warning")
-            return redirect(url_for('dashboard'))
+    if farmaco:
+        return render_template('results.html', query=query, farmaco=farmaco)
+    else:
+        flash("Nessun farmaco trovato nel database!", "warning")
+        return redirect(url_for('index'))
 
-    except Exception as e:
-        flash("Errore nella ricerca del farmaco!", "danger")
-        print(f"Errore PubChem: {e}")
-        return redirect(url_for('results.html'))
+
 
 @app.route('/save', methods=['POST'])
-@login_required
 def save():
-    """Salva un farmaco nel database con le note personalizzate"""
+    """Salva un farmaco nel database con le note personalizzate."""
     nome = request.form.get('nome')
     formula = request.form.get('formula')
     peso_molecolare = request.form.get('peso_molecolare')
@@ -218,9 +214,14 @@ def save():
         nuovo_farmaco = Farmaco(nome=nome, formula=formula, peso_molecolare=peso_molecolare, note=note)
         db.session.add(nuovo_farmaco)
         db.session.commit()
-        flash("Farmaco salvato con successo!", "success")
 
-    return redirect(url_for('dashboard'))
+    return redirect(url_for('saved_farmaci'))
+
+@app.route('/saved')
+def saved_farmaci():
+    """Mostra tutti i farmaci salvati nel database."""
+    farmaci = Farmaco.query.all()
+    return render_template('saved.html', farmaci=farmaci)
 
 
 

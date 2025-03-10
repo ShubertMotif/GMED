@@ -1,25 +1,27 @@
-@app.route('/search', methods=['POST'])
-@login_required
-def search():
-    """Cerca un farmaco su PubChem e mostra i risultati in results.html"""
-    query = request.form.get('query')
+{% extends "base.html" %}
 
-    if not query:
-        flash("Inserisci un nome di farmaco valido!", "warning")
-        return redirect(url_for('dashboard'))
+{% block content %}
+    <h2>Risultati per "{{ query }}"</h2>
+    {% if farmaco %}
+        <div class="result-container">
+            <h3>{{ farmaco.nome }}</h3>
+            <p><strong>Formula Molecolare:</strong> {{ farmaco.formula }}</p>
+            <p><strong>Peso Molecolare:</strong> {{ farmaco.peso_molecolare }} g/mol</p>
+            <p><strong>Note:</strong> {{ farmaco.note }}</p>
 
-    try:
-        # Ricerca il farmaco su PubChem
-        results = pcp.get_compounds(query, 'name')
+            <!-- Form per salvare il farmaco -->
+            <form action="{{ url_for('save') }}" method="POST">
+                <input type="hidden" name="nome" value="{{ farmaco.nome }}">
+                <input type="hidden" name="formula" value="{{ farmaco.formula }}">
+                <input type="hidden" name="peso_molecolare" value="{{ farmaco.peso_molecolare }}">
 
-        if results:
-            compound = results[0]  # Prendiamo il primo risultato disponibile
-            return render_template('results.html', query=query, compound=compound)
-        else:
-            flash("Nessun farmaco trovato!", "warning")
-            return redirect(url_for('dashboard'))
+                <label for="note">Note (adrenergico, gabaergico, etc.):</label>
+                <input type="text" name="note" placeholder="Es. Adrenergico" required>
 
-    except Exception as e:
-        flash("Errore nella ricerca del farmaco!", "danger")
-        print(f"Errore PubChem: {e}")
-        return redirect(url_for('dashboard'))
+                <button type="submit">Salva nel Database</button>
+            </form>
+        </div>
+    {% else %}
+        <p>Nessun risultato trovato per "{{ query }}".</p>
+    {% endif %}
+{% endblock %}
