@@ -9,22 +9,24 @@
 <body>
     <header>
         <div class="logo-container">
-            <img src="{{ url_for('static', filename='images/farmaci_cassetta.png') }}" alt="Logo FARMAMED" class="logo">
             <h1>FARMAMED</h1>
         </div>
         <nav>
             <ul class="navbar">
-                <li><a href="/">Home</a></li>
-                <li><a href="/database">Database</a></li>
-                <li><a href="/aggiungi_farmaco">Aggiungi Farmaco</a></li>
-                <li><a href="/contatti">Contatti</a></li>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('register') }}">Registrati</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
 
     <main>
-        {% block content %}
-        {% endblock %}
+        {% block content %}{% endblock %}
     </main>
 
     <footer>

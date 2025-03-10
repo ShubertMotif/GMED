@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Dashboard Medico</h2>
+
+<form action="{{ url_for('search') }}" method="POST">
+    <input type="text" name="query" placeholder="Cerca un farmaco..." required>
+    <button type="submit">Cerca</button>
+</form>
+
+
+
+    <!-- Link per aggiungere nuovi pazienti e farmaci -->
+    <a href="{{ url_for('aggiungi_paziente') }}">➕ Aggiungi Paziente</a>
+    <a href="{{ url_for('aggiungi_farmaco') }}">➕ Registra Farmaco</a>
+
+    <h3>Lista Pazienti</h3>
+    {% if pazienti %}
+        <ul>
+            {% for paziente in pazienti %}
+                <li>
+                    <strong>{{ paziente.nome }} {{ paziente.cognome }}</strong> - {{ paziente.data_nascita }}<br>
+                    <small>Sesso: {{ paziente.sesso }}</small><br>
+                    <small>Note: {{ paziente.note_mediche }}</small>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nessun paziente registrato.</p>
+    {% endif %}
+{% endblock %}

@@ -1,36 +1,32 @@
-/* Generale */
+/* Reset di base */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #e8f5e9; /* Verde medico chiaro */
+    background-color: #f8f0f2; /* Rosa farmaceutico chiaro */
     text-align: center;
 }
 
 /* Header */
 header {
-    background-color: #2e7d32;
+    background-color: #4caf50; /* Verde farmaceutico */
     color: white;
     padding: 15px 0;
+    text-align: center;
 }
 
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    justify-content: center;
-}
-
-.logo {
-    width: 50px;
+.logo-container img {
+    width: 80px;
     height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 /* Navbar */
 .navbar {
     list-style: none;
     padding: 0;
-    margin: 15px 0;
+    margin: 10px 0;
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -48,10 +44,65 @@ header {
     background-color: #1b5e20;
 }
 
+/* Form di ricerca */
+.search-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: 20px auto;
+}
+
+.search-form input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.search-form button {
+    background-color: #ff4081; /* Rosa farmaceutico */
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.search-form button:hover {
+    background-color: #d81b60;
+}
+
+/* Contenuto principale */
+main {
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+}
+
 /* Footer */
 footer {
     margin-top: 20px;
-    background-color: #2e7d32;
+    background-color: #4caf50;
     color: white;
     padding: 10px;
+}
+
+/* Responsive per cellulari */
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-form {
+        max-width: 100%;
+    }
+
+    main {
+        width: 90%;
+    }
 }

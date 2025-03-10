@@ -1,14 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Aggiungi un nuovo farmaco</h2>
+    <h2>Registra un nuovo farmaco</h2>
     <form method="POST">
-        <label for="nome">Nome del Farmaco:</label>
-        <input type="text" name="nome" id="nome" required>
-        <br>
-        <label for="classe_terapeutica">Classe Terapeutica:</label>
-        <input type="text" name="classe_terapeutica" id="classe_terapeutica" required>
-        <br>
-        <button type="submit">Aggiungi Farmaco</button>
+        <input type="text" name="nome" placeholder="Nome del farmaco" required>
+        <input type="text" name="principio_attivo" placeholder="Principio attivo" required>
+        <input type="text" name="dose" placeholder="Dose (es. 500mg)">
+        <textarea name="effetti_collaterali" placeholder="Effetti collaterali"></textarea>
+        <label for="paziente_id">Assegna a paziente:</label>
+        <select name="paziente_id">
+            {% for paziente in pazienti %}
+                <option value="{{ paziente.id }}">{{ paziente.nome }} {{ paziente.cognome }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Registra Farmaco</button>
     </form>
 {% endblock %}

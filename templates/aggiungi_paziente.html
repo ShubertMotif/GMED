@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Aggiungi un nuovo paziente</h2>
+    <form method="POST">
+        <input type="text" name="nome" placeholder="Nome" required>
+        <input type="text" name="cognome" placeholder="Cognome" required>
+        <input type="date" name="data_nascita" required>
+        <select name="sesso" required>
+            <option value="Maschio">Maschio</option>
+            <option value="Femmina">Femmina</option>
+            <option value="Altro">Altro</option>
+        </select>
+        <textarea name="note_mediche" placeholder="Note mediche"></textarea>
+        <button type="submit">Aggiungi Paziente</button>
+    </form>
+{% endblock %}

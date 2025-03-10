@@ -2,15 +2,15 @@
 
 {% block content %}
     <h2>Benvenuto su FARMAMED!</h2>
-    <p>Utilizza il nostro strumento per scoprire e monitorare le potenziali interferenze tra farmaci.</p>
 
-    <!-- Barra di ricerca -->
-    <form action="/search" method="post">
-        <input type="text" name="query" placeholder="Inserisci il nome di un farmaco" required>
-        <button type="submit">Cerca</button>
-    </form>
+<form action="{{ url_for('search') }}" method="POST" class="search-form">
+    <input type="text" name="query" placeholder="Cerca un farmaco..." required>
+    <button type="submit">🔍 Cerca</button>
+</form>
 
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
+    <p>Accedi per gestire i tuoi pazienti e farmaci.</p>
+    {% if not current_user.is_authenticated %}
+        <a href="{{ url_for('login') }}">Accedi</a> |
+        <a href="{{ url_for('register') }}">Registrati</a>
     {% endif %}
 {% endblock %}
