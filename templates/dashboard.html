@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Dashboard Medico</h2>
+    <h2>👨‍⚕️ Dashboard Medico</h2>
 
     <!-- Form di ricerca farmaco -->
     <form action="{{ url_for('search') }}" method="POST" class="search-form">
@@ -10,37 +10,52 @@
     </form>
 
     <!-- Link per aggiungere nuovi pazienti e farmaci -->
-    <a href="{{ url_for('aggiungi_paziente') }}">➕ Aggiungi Paziente</a>
-    <a href="{{ url_for('aggiungi_farmaco') }}">➕ Registra Farmaco</a>
+    <div class="dashboard-actions">
+        <a href="{{ url_for('aggiungi_paziente') }}" class="btn">➕ Aggiungi Paziente</a>
+        <a href="{{ url_for('aggiungi_farmaco') }}" class="btn">➕ Registra Farmaco</a>
+    </div>
 
-    <h3>Lista Pazienti</h3>
+    <h3>📋 Lista Pazienti</h3>
+
     {% if pazienti %}
-        <ul>
-            {% for paziente in pazienti %}
-                <li>
-                    <strong>{{ paziente.nome }} {{ paziente.cognome }}</strong> - {{ paziente.data_nascita }}<br>
-                    <small>Sesso: {{ paziente.sesso }}</small><br>
-                    <small>Note: {{ paziente.note_mediche }}</small>
-
-                    <!-- Mostra i farmaci abbinati al paziente -->
-                    <h4>Farmaci Assegnati:</h4>
-                    {% if paziente.farmaci %}
-                        <ul>
-                            {% for farmaco in paziente.farmaci %}
-                                <li>
-                                    <strong>{{ farmaco.nome }}</strong> - {{ farmaco.dose }}<br>
-                                    <small>Principio Attivo: {{ farmaco.principio_attivo }}</small><br>
-                                    <small>Effetti Collaterali: {{ farmaco.effetti_collaterali }}</small>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p>Nessun farmaco assegnato.</p>
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
+        <table class="patients-table">
+            <thead>
+                <tr>
+                    <th>👤 Nome</th>
+                    <th>🎂 Data di Nascita</th>
+                    <th>⚧️ Sesso</th>
+                    <th>📑 Note Mediche</th>
+                    <th>💊 Farmaci</th>
+                    <th>🛠 Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for paziente in pazienti %}
+                <tr>
+                    <td>{{ paziente.nome }} {{ paziente.cognome }}</td>
+                    <td>{{ paziente.data_nascita }}</td>
+                    <td>{{ paziente.sesso }}</td>
+                    <td>{{ paziente.note_mediche if paziente.note_mediche else 'Nessuna' }}</td>
+                    <td>
+                        {% if paziente.farmaci %}
+                            <ul>
+                                {% for farmaco in paziente.farmaci %}
+                                    <li>{{ farmaco.nome }} ({{ farmaco.dose }})</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            ❌ Nessun farmaco assegnato
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ url_for('aggiungi_farmaco') }}" class="btn-action">➕ Aggiungi Farmaco</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     {% else %}
-        <p>Nessun paziente registrato.</p>
+        <p>❌ Nessun paziente registrato.</p>
     {% endif %}
+
 {% endblock %}

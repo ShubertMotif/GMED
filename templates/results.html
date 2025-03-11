@@ -1,27 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Risultati per "{{ query }}"</h2>
-    {% if farmaco %}
-        <div class="result-container">
-            <h3>{{ farmaco.nome }}</h3>
-            <p><strong>Formula Molecolare:</strong> {{ farmaco.formula }}</p>
-            <p><strong>Peso Molecolare:</strong> {{ farmaco.peso_molecolare }} g/mol</p>
-            <p><strong>Note:</strong> {{ farmaco.note }}</p>
+    <h2>🔍 Risultati per "{{ query }}"</h2>
 
-            <!-- Form per salvare il farmaco -->
-            <form action="{{ url_for('save') }}" method="POST">
-                <input type="hidden" name="nome" value="{{ farmaco.nome }}">
-                <input type="hidden" name="formula" value="{{ farmaco.formula }}">
-                <input type="hidden" name="peso_molecolare" value="{{ farmaco.peso_molecolare }}">
-
-                <label for="note">Note (adrenergico, gabaergico, etc.):</label>
-                <input type="text" name="note" placeholder="Es. Adrenergico" required>
-
-                <button type="submit">Salva nel Database</button>
-            </form>
-        </div>
+    {% if farmaci %}
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th>💊 Nome</th>
+                    <th>🧪 Principio Attivo</th>
+                    <th>📦 Dose</th>
+                    <th>⚠️ Effetti Collaterali</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for farmaco in farmaci %}
+                <tr>
+                    <td>{{ farmaco.nome }}</td>
+                    <td>{{ farmaco.principio_attivo }}</td>
+                    <td>{{ farmaco.dose }}</td>
+                    <td>{{ farmaco.effetti_collaterali if farmaco.effetti_collaterali else 'Nessuno' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% elif wikipedia_info %}
+        <h3>🌐 Informazioni trovate su Wikipedia</h3>
+        <p><strong>{{ wikipedia_info.title }}</strong></p>
+        <p>{{ wikipedia_info.extract }}</p>
+        <a href="{{ wikipedia_info.link }}" target="_blank">🔗 Leggi di più su Wikipedia</a>
     {% else %}
-        <p>Nessun risultato trovato per "{{ query }}".</p>
+        <p>❌ Nessun farmaco trovato per "{{ query }}".</p>
     {% endif %}
+
+    <a href="{{ url_for('index') }}" class="btn">🔙 Torna alla Home</a>
 {% endblock %}

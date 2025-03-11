@@ -1,0 +1,30 @@
+Marco Caruso, 27 anni, Maschio, Peso: 115.0 kg, Altezza: 1.72 m, BMI: 38.9, Dieta: DASH, Allergia: Frutta secca, Diagnosi: Nessuna, Farmaci: Omeprazolo
+Stefano Mancini, 53 anni, Maschio, Peso: 63.3 kg, Altezza: 1.66 m, BMI: 23.0, Dieta: Ketogenica, Allergia: Lattosio, Diagnosi: Ipertensione, Farmaci: Simvastatina
+Roberta Ricci, 54 anni, Femmina, Peso: 97.4 kg, Altezza: 1.87 m, BMI: 27.9, Dieta: Mediterranea, Allergia: Polline, Diagnosi: Sindrome metabolica, Farmaci: Aspirina
+Federico Ricci, 54 anni, Maschio, Peso: 107.6 kg, Altezza: 1.58 m, BMI: 43.1, Dieta: Omnivora, Allergia: Crostacei, Diagnosi: Sindrome metabolica, Farmaci: Metformina
+Francesca Marini, 59 anni, Femmina, Peso: 100.9 kg, Altezza: 1.55 m, BMI: 42.0, Dieta: Ketogenica, Allergia: Nessuna, Diagnosi: Obesità, Farmaci: Metformina
+Stefano Lombardi, 50 anni, Maschio, Peso: 106.2 kg, Altezza: 1.74 m, BMI: 35.1, Dieta: Paleolitica, Allergia: Lattosio, Diagnosi: Obesità, Farmaci: Simvastatina
+Giorgio Ricci, 47 anni, Maschio, Peso: 70.2 kg, Altezza: 1.79 m, BMI: 21.9, Dieta: Mediterranea, Allergia: Crostacei, Diagnosi: Obesità, Farmaci: Simvastatina
+Antonio Bianchi, 18 anni, Femmina, Peso: 71.0 kg, Altezza: 1.75 m, BMI: 23.2, Dieta: DASH, Allergia: Nessuna, Diagnosi: Ipertensione, Farmaci: Simvastatina
+Valentina Ricci, 79 anni, Femmina, Peso: 72.5 kg, Altezza: 1.58 m, BMI: 29.0, Dieta: Mediterranea, Allergia: Polline, Diagnosi: Nessuna, Farmaci: Simvastatina
+Elena Lombardi, 76 anni, Maschio, Peso: 53.9 kg, Altezza: 1.88 m, BMI: 15.3, Dieta: Omnivora, Allergia: Crostacei, Diagnosi: Sindrome metabolica, Farmaci: Simvastatina
+Andrea Costa, 64 anni, Maschio, Peso: 77.4 kg, Altezza: 1.78 m, BMI: 24.4, Dieta: Vegana, Allergia: Crostacei, Diagnosi: Diabete tipo 2, Farmaci: Metformina
+Antonio Costa, 59 anni, Maschio, Peso: 51.3 kg, Altezza: 1.5 m, BMI: 22.8, Dieta: Ketogenica, Allergia: Polline, Diagnosi: Ipertensione, Farmaci: Simvastatina
+Laura Barbieri, 52 anni, Femmina, Peso: 67.9 kg, Altezza: 1.83 m, BMI: 20.3, Dieta: Paleolitica, Allergia: Lattosio, Diagnosi: Nessuna, Farmaci: Nessuno
+Marta Conti, 68 anni, Femmina, Peso: 72.7 kg, Altezza: 1.61 m, BMI: 28.0, Dieta: Vegetariana, Allergia: Lattosio, Diagnosi: Celiachia, Farmaci: Nessuno
+Andrea Mancini, 70 anni, Femmina, Peso: 80.7 kg, Altezza: 1.89 m, BMI: 22.6, Dieta: Mediterranea, Allergia: Frutta secca, Diagnosi: Sindrome metabolica, Farmaci: Lisinopril
+Davide Marini, 48 anni, Maschio, Peso: 74.2 kg, Altezza: 1.87 m, BMI: 21.2, Dieta: DASH, Allergia: Polline, Diagnosi: Obesità, Farmaci: Simvastatina
+Marta Verdi, 42 anni, Maschio, Peso: 62.5 kg, Altezza: 1.56 m, BMI: 25.7, Dieta: Ketogenica, Allergia: Lattosio, Diagnosi: Obesità, Farmaci: Simvastatina
+Marco Barbieri, 75 anni, Femmina, Peso: 84.9 kg, Altezza: 1.6 m, BMI: 33.2, Dieta: DASH, Allergia: Glutine, Diagnosi: Obesità, Farmaci: Aspirina
+Alessia Barbieri, 36 anni, Femmina, Peso: 107.1 kg, Altezza: 1.58 m, BMI: 42.9, Dieta: DASH, Allergia: Glutine, Diagnosi: Sindrome metabolica, Farmaci: Lisinopril
+Marta Fabbri, 77 anni, Femmina, Peso: 85.3 kg, Altezza: 1.69 m, BMI: 29.9, Dieta: Omnivora, Allergia: Polline, Diagnosi: Diabete tipo 2, Farmaci: Metformina
+Valentina Bianchi, 79 anni, Maschio, Peso: 114.8 kg, Altezza: 1.51 m, BMI: 50.3, Dieta: Paleolitica, Allergia: Lattosio, Diagnosi: Ipertensione, Farmaci: Nessuno
+Simone Ferrari, 42 anni, Femmina, Peso: 102.3 kg, Altezza: 1.51 m, BMI: 44.9, Dieta: Vegana, Allergia: Frutta secca, Diagnosi: Obesità, Farmaci: Lisinopril
+Davide Caruso, 40 anni, Femmina, Peso: 114.1 kg, Altezza: 1.87 m, BMI: 32.6, Dieta: DASH, Allergia: Crostacei, Diagnosi: Celiachia, Farmaci: Nessuno
+Stefano Conti, 79 anni, Maschio, Peso: 116.4 kg, Altezza: 1.55 m, BMI: 48.4, Dieta: Mediterranea, Allergia: Lattosio, Diagnosi: Ipertensione, Farmaci: Aspirina
+Marco Rinaldi, 23 anni, Femmina, Peso: 70.5 kg, Altezza: 1.84 m, BMI: 20.8, Dieta: Mediterranea, Allergia: Nessuna, Diagnosi: Sindrome metabolica, Farmaci: Nessuno
+Federico De Luca, 33 anni, Maschio, Peso: 80.0 kg, Altezza: 1.81 m, BMI: 24.4, Dieta: DASH, Allergia: Crostacei, Diagnosi: Sindrome metabolica, Farmaci: Simvastatina
+Elena Romano, 74 anni, Maschio, Peso: 91.3 kg, Altezza: 1.63 m, BMI: 34.4, Dieta: Mediterranea, Allergia: Nessuna, Diagnosi: Nessuna, Farmaci: Omeprazolo
+Simone Moretti, 55 anni, Femmina, Peso: 74.6 kg, Altezza: 1.84 m, BMI: 22.0, Dieta: Vegetariana, Allergia: Frutta secca, Diagnosi: Celiachia, Farmaci: Metformina
+Davide Bianchi, 76 anni, Femmina, Peso: 70.8 kg, Altezza: 1.56 m, BMI: 29.1, Dieta: Omnivora, Allergia: Crostacei, Diagnosi: Diabete tipo 2, Farmaci: Nessuno
+Elena Costa, 40 anni, Maschio, Peso: 58.2 kg, Altezza: 1.64 m, BMI: 21.6, Dieta: Vegetariana, Allergia: Nessuna, Diagnosi: Celiachia, Farmaci: Omeprazolo

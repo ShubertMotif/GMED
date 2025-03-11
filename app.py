@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 import os
+import requests
 import pubchempy as pcp
 
 # Configurazione dell'app Flask
@@ -45,6 +46,13 @@ class Farmaco(db.Model):
     dose = db.Column(db.String(50), nullable=True)
     effetti_collaterali = db.Column(db.Text, nullable=True)
     paziente_id = db.Column(db.Integer, db.ForeignKey('paziente.id'), nullable=False)
+
+class Visita(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    paziente_id = db.Column(db.Integer, db.ForeignKey('paziente.id'), nullable=False)
+    medico_id = db.Column(db.Integer, db.ForeignKey('medico.id'), nullable=False)
+    diagnosi = db.Column(db.Text, nullable=True)
+    note = db.Column(db.Text, nullable=True)
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -182,24 +190,44 @@ def contatti():
     return render_template('contatti.html')
 
 
+import requests
+
+
 @app.route('/search', methods=['POST'])
 def search():
-    """Cerca un farmaco nel database interno e mostra i risultati"""
+    """Cerca un farmaco nel database interno, se non lo trova cerca su Wikipedia."""
     query = request.form.get('query')
 
     if not query:
         flash("Inserisci un nome di farmaco valido!", "warning")
         return redirect(url_for('index'))
 
-    # Cerca il farmaco nel database
-    farmaco = Farmaco.query.filter(Farmaco.nome.ilike(f"%{query}%")).first()
+    # Cerca nel database locale
+    farmaci_trovati = Farmaco.query.filter(Farmaco.nome.ilike(f"%{query}%")).all()
 
-    if farmaco:
-        return render_template('results.html', query=query, farmaco=farmaco)
-    else:
-        flash("Nessun farmaco trovato nel database!", "warning")
-        return redirect(url_for('index'))
+    if farmaci_trovati:
+        return render_template('results.html', query=query, farmaci=farmaci_trovati, wikipedia_info=None)
 
+    # Se il farmaco non è nel database, prova a cercarlo su Wikipedia
+    wikipedia_info = get_farmaco_wikipedia(query)
+
+    return render_template('results.html', query=query, farmaci=[], wikipedia_info=wikipedia_info)
+
+
+def get_farmaco_wikipedia(nome_farmaco):
+    """Recupera informazioni sul farmaco da Wikipedia"""
+    url = f"https://it.wikipedia.org/api/rest_v1/page/summary/{nome_farmaco.replace(' ', '_')}"
+
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        data = response.json()
+        return {
+            "title": data.get("title"),
+            "extract": data.get("extract"),
+            "link": f"https://it.wikipedia.org/wiki/{nome_farmaco.replace(' ', '_')}"
+        }
+    return None
 
 
 @app.route('/save', methods=['POST'])
